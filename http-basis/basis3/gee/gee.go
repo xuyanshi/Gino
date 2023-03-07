@@ -36,7 +36,7 @@ func (engine *Engine) Run(addr string) (err error) {
 
 	// 也可以这样写
 	/*
-		handler := (http.Handler)(engine)
+		handler := (http.Handler)(engine) // 强制转换为 http.Handler 类型
 		log.Fatal(http.ListenAndServe(":9999", handler))
 	*/
 }
