@@ -13,11 +13,17 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "URL.Path = %q\n", req.URL.Path)
+	_, err := fmt.Fprintf(w, "URL.Path = %q\n", req.URL.Path)
+	if err != nil {
+		return
+	}
 }
 
 func helloHandler(w http.ResponseWriter, req *http.Request) {
 	for k, v := range req.Header {
-		fmt.Fprintf(w, "Header[%q] = %q\n", k, v)
+		_, err := fmt.Fprintf(w, "Header[%q] = %q\n", k, v)
+		if err != nil {
+			return
+		}
 	}
 }
