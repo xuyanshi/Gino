@@ -33,6 +33,12 @@ func (engine *Engine) POST(pattern string, handler HandlerFunc) {
 func (engine *Engine) Run(addr string) (err error) {
 	// 在 Go 语言中，实现了接口方法的 struct 都可以强制转换为接口类型
 	return http.ListenAndServe(addr, engine)
+
+	// 也可以这样写
+	/*
+		handler := (http.Handler)(engine)
+		log.Fatal(http.ListenAndServe(":9999", handler))
+	*/
 }
 
 func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
