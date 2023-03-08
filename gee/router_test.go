@@ -2,6 +2,7 @@ package gee
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -27,4 +28,12 @@ func TestGetRouter(t *testing.T) {
 	}
 
 	fmt.Printf("matched path: %s, params['name']: %s\n", n.pattern, ps["name"])
+}
+
+func TestParsePattern(t *testing.T) {
+	if !(reflect.DeepEqual(parsePattern("/p/:name"), []string{"p", ":name"}) &&
+		reflect.DeepEqual(parsePattern("/p/*"), []string{"p", "*"}) &&
+		reflect.DeepEqual(parsePattern("/p/*name/*"), []string{"p", "*name"})) {
+		t.Fatal("TestParsePattern Failed.")
+	}
 }
