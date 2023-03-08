@@ -44,6 +44,10 @@ func (r *router) addRoute(method string, pattern string, handler HandlerFunc) {
 	r.roots[method].insert(pattern, parts, 0)
 }
 
+func (r *router) getRoute() {
+	
+}
+
 func (r *router) handle(c *Context) {
 	key := c.Method + "-" + c.Path
 	if handler, ok := r.handlers[key]; ok {
