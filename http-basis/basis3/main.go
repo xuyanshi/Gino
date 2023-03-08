@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"gee"
 	"net/http"
 )
@@ -13,13 +12,15 @@ func main() {
 		c.HTML(http.StatusOK, "<h1>Hello World</h1>")
 	})
 
-	r.GET("/hello", func(w http.ResponseWriter, req *http.Request) {
-		for k, v := range req.Header {
-			_, err := fmt.Fprintf(w, "Header[%q] = %q\n", k, v)
-			if err != nil {
-				return
-			}
-		}
+	r.GET("/hello", func(c *gee.Context) {
+		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
+	})
+
+	r.POST("/login", func(c *gee.Context) {
+		c.JSON(http.StatusOK, gee.H{
+			"username": "golang",
+			"password": "password123",
+		})
 	})
 
 	r.Run(":9999")
