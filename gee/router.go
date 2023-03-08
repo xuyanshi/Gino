@@ -35,6 +35,13 @@ func (r *router) addRoute(method string, pattern string, handler HandlerFunc) {
 	// log.Printf("Route %4s - %s", method, pattern)
 	key := method + "-" + pattern
 	r.handlers[key] = handler
+
+	parts := parsePattern(pattern)
+	_, ok := r.roots[method]
+	if !ok {
+		r.roots[method] = &node{}
+	}
+	r.roots[method].insert(pattern, parts, 0)
 }
 
 func (r *router) handle(c *Context) {
