@@ -58,6 +58,7 @@ func (n *node) insert(pattern string, parts []string, height int) {
 func (n *node) search(parts []string, height int) *node {
 	if len(parts) == height || strings.HasPrefix(parts[height], "*") {
 		if n.pattern == "" {
+			// matching failed
 			return nil
 		}
 		return n
