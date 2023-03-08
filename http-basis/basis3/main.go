@@ -9,11 +9,8 @@ import (
 func main() {
 	r := gee.New()
 
-	r.GET("/", func(w http.ResponseWriter, req *http.Request) {
-		_, err := fmt.Fprintf(w, "URL.Path = %q\n", req.URL.Path)
-		if err != nil {
-			return
-		}
+	r.GET("/", func(c *gee.Context) {
+		c.HTML(http.StatusOK, "<h1>Hello World</h1>")
 	})
 
 	r.GET("/hello", func(w http.ResponseWriter, req *http.Request) {
