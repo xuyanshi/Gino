@@ -6,3 +6,7 @@ type node struct {
 	children []*node
 	isWild   bool
 }
+
+func (n *node) matchChild(part string) *node {
+	return nil
+}
