@@ -6,7 +6,8 @@ import (
 )
 
 type router struct {
-	handlers map[string]HandlerFunc
+	roots    map[string]*node       // eg. roots["GET"], roots["POST"]
+	handlers map[string]HandlerFunc // eg. handlers["GET-/p/:lang/doc"], handlers["POST-/p/book"]
 }
 
 func newRouter() *router {
