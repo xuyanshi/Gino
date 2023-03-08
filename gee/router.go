@@ -54,7 +54,15 @@ func (r *router) getRoute(method string, path string) (*node, map[string]string)
 
 	n := root.search(searchParts, 0)
 	if n != nil {
-		
+		parts := parsePattern(n.pattern)
+		for idx, part := range parts {
+			if part[0] == ':' {
+				params[part[1:]] = searchParts[idx]
+			} else if part[0] == '*' && len(part) > 1 {
+				params[part[1:]] = strings.Join(searchParts[idx:], "/")
+				break
+			}
+		}
 		return n, params
 	}
 	return nil, nil
