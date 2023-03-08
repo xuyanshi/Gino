@@ -1,12 +1,19 @@
 package gee
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 type node struct {
 	pattern  string
 	part     string
 	children []*node
 	isWild   bool
+}
+
+func (n *node) String() string {
+	return fmt.Sprintf("node{pattern=%s, part=%s, isWild=%t}", n.pattern, n.part, n.isWild)
 }
 
 func (n *node) matchChild(part string) *node {
@@ -56,7 +63,7 @@ func (n *node) insert(pattern string, parts []string, height int) {
 退出规则是，匹配到了*，匹配失败，或者匹配到了第len(parts)层节点。
 */
 func (n *node) search(parts []string, height int) *node {
-	if len(parts) == height || strings.HasPrefix(parts[height], "*") {
+	if len(parts) == height || strings.HasPrefix(n.part, "*") {
 		if n.pattern == "" {
 			// matching failed
 			return nil
