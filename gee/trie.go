@@ -25,3 +25,11 @@ func (n *node) matchChildren(part string) []*node {
 	}
 	return nodes
 }
+
+func (n *node) insert(pattern string, parts []string, height int) {
+
+}
+
+func (n *node) search(pattern string, height int) *node {
+	return nil
+}
