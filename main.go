@@ -1,11 +1,27 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"gee"
+	"net/http"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.String(200, "Hello, Gin")
+	r := gee.New()
+
+	r.GET("/", func(c *gee.Context) {
+		c.HTML(http.StatusOK, "<h1>Hello World</h1>")
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+
+	r.GET("/hello", func(c *gee.Context) {
+		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
+	})
+
+	r.POST("/login", func(c *gee.Context) {
+		c.JSON(http.StatusOK, gee.H{
+			"username": "golang",
+			"password": "password123",
+		})
+	})
+
+	r.Run(":9999")
 }
