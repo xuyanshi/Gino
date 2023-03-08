@@ -64,8 +64,9 @@ func TestGetRoute2(t *testing.T) {
 			t.Fatalf("pattern should be /assets/*filepath & filepath should be css/test.css.\n"+
 				"but now pattern is %s and filepath is %s.", n2.pattern, ps2["filepath"])
 		}
+	} else {
+		t.Fatal("r.getRoute(\"GET\", \"/assets/css/test.css\") returns nil")
 	}
-	t.Fatal("r.getRoute(\"GET\", \"/assets/css/test.css\") returns nil")
 }
 
 func TestGetRoutes(t *testing.T) {
