@@ -20,21 +20,6 @@ func FormatAsDate(t time.Time) string {
 
 func main() {
 	e := gee.Default()
-	//e.AddMiddleware(gee.Logger())
-	//e.SetFuncMap(template.FuncMap{
-	//	"FormatAsDate": FormatAsDate,
-	//})
-	//e.LoadHTMLGlob("templates/*")
-	//e.Static("/assets", "./static")
-	//
-	//stu1 := &student{
-	//	Name: "emo",
-	//	age:  23,
-	//}
-	//stu2 := &student{
-	//	Name: "maitian",
-	//	age:  24,
-	//}
 
 	e.GET("/", func(c *gee.Context) {
 		c.String(http.StatusOK, "Hello World!\n")
