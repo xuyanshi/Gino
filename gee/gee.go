@@ -1,6 +1,7 @@
 package gee
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 	"path"
@@ -19,8 +20,10 @@ type (
 	}
 	Engine struct {
 		*RouterGroup
-		router *router
-		groups []*RouterGroup // store all groups here
+		router        *router
+		groups        []*RouterGroup // store all groups here
+		htmlTemplates *template.Template
+		funcMap       template.FuncMap
 	}
 )
 
