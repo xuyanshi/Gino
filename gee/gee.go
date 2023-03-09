@@ -7,10 +7,19 @@ import (
 // HandlerFunc defines the request handler used by gee
 type HandlerFunc func(c *Context)
 
-// Engine implement the interface of ServeHTTP
-type Engine struct {
-	router *router
-}
+type (
+	RouterGroup struct {
+		prefix      string
+		middleWares []HandlerFunc
+		parent      *RouterGroup
+		engine      *Engine
+	}
+	Engine struct {
+		routerGroup *RouterGroup
+		router      *router
+		groups      []*RouterGroup // store all groups here
+	}
+)
 
 func New() *Engine {
 	return &Engine{router: newRouter()}
