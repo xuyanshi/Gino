@@ -12,10 +12,6 @@ func main() {
 	e.AddMiddleware(gee.Logger())
 	e.Static("/assets", "./static")
 
-	e.GET("/", func(c *gee.Context) {
-		c.HTML(http.StatusOK, "<h1>Index Page</h1>")
-	})
-
 	//v1 := e.Group("/v1")
 	//{
 	//	v1.GET("/", func(c *gee.Context) {
