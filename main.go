@@ -10,6 +10,7 @@ import (
 func main() {
 	e := gee.New()
 	e.AddMiddleware(gee.Logger())
+	e.Static("/assets", "./static")
 
 	e.GET("/", func(c *gee.Context) {
 		c.HTML(http.StatusOK, "<h1>Index Page</h1>")
