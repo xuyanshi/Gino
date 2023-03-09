@@ -95,3 +95,5 @@ func (group *RouterGroup) createStaticHandler(relativePath string, fs http.FileS
 		fileServer.ServeHTTP(c.Writer, c.Req)
 	}
 }
+
+func
