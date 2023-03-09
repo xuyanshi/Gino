@@ -28,11 +28,7 @@ func main() {
 	}
 
 	v2 := e.Group("/v2")
-	v2.AddMiddleware(func(c *gee.Context) {
-		t := time.Now()
-		c.Fail(http.StatusInternalServerError, "Internal Server Error")
-		log.Printf("[%d] %s in %v for group v2", c.StatusCode, c.Req.RequestURI, time.Since(t))
-	})
+	v2.AddMiddleware(middlewareV2())
 
 	{
 		v2.GET("/hello/:name", func(c *gee.Context) {
@@ -58,4 +54,12 @@ func main() {
 	// cmd.Stdout = os.Stdout
 	// cmd.Stderr = os.Stderr
 	// cmd.Run()
+}
+
+func middlewareV2() gee.HandlerFunc {
+	return func(c *gee.Context) {
+		t := time.Now()
+		c.Fail(http.StatusInternalServerError, "Internal Server Error")
+		log.Printf("[%d] %s in %v for group v2", c.StatusCode, c.Req.RequestURI, time.Since(t))
+	}
 }
