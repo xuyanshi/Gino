@@ -45,6 +45,12 @@ func main() {
 			"student": [2]*student{stu1, stu2},
 		})
 	})
+	e.GET("/date", func(c *gee.Context) {
+		c.HTML(http.StatusOK, "custom_function.tmpl", gee.H{
+			"title": "gee",
+			"now":   time.Date(2022, time.March, 9, 22, 0, 0, 0, time.FixedZone("UTC+8", 8*60*60)),
+		})
+	})
 	e.Run(":9999")
 }
 
