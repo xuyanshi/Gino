@@ -105,6 +105,6 @@ func (group *RouterGroup) Static(relativePath string, root string) {
 	group.GET(urlPattern, handler)
 }
 
-func (engine *Engine) SetFuncMap() {
+func (engine *Engine) SetFuncMap(funcMap template.FuncMap) {
 
 }
