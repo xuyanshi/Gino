@@ -106,5 +106,5 @@ func (group *RouterGroup) Static(relativePath string, root string) {
 }
 
 func (engine *Engine) SetFuncMap(funcMap template.FuncMap) {
-
+	engine.funcMap = funcMap
 }
