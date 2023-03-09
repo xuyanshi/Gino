@@ -11,7 +11,7 @@ func main() {
 	e := gee.New()
 	e.AddMiddleware(gee.Logger())
 
-	e.GET("/index", func(c *gee.Context) {
+	e.GET("/", func(c *gee.Context) {
 		c.HTML(http.StatusOK, "<h1>Index Page</h1>")
 	})
 
@@ -33,7 +33,7 @@ func main() {
 		c.Fail(http.StatusInternalServerError, "Internal Server Error")
 		log.Printf("[%d] %s in %v for group v2", c.StatusCode, c.Req.RequestURI, time.Since(t))
 	})
-	
+
 	{
 		v2.GET("/hello/:name", func(c *gee.Context) {
 			// expect /hello/emo
