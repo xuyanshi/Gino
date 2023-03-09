@@ -93,3 +93,7 @@ func (c *Context) Next() {
 		c.handlers[c.index](c)
 	}
 }
+
+func (c *Context) Fail(code int, err string) {
+
+}
