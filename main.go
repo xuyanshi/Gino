@@ -15,17 +15,17 @@ func main() {
 		c.HTML(http.StatusOK, "<h1>Index Page</h1>")
 	})
 
-	v1 := e.Group("/v1")
-	{
-		v1.GET("/", func(c *gee.Context) {
-			c.HTML(http.StatusOK, "<h1>Hello</h1>")
-		})
-
-		v1.GET("/hello", func(c *gee.Context) {
-			// expect /hello?name=emo
-			c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
-		})
-	}
+	//v1 := e.Group("/v1")
+	//{
+	//	v1.GET("/", func(c *gee.Context) {
+	//		c.HTML(http.StatusOK, "<h1>Hello</h1>")
+	//	})
+	//
+	//	v1.GET("/hello", func(c *gee.Context) {
+	//		// expect /hello?name=emo
+	//		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
+	//	})
+	//}
 
 	v2 := e.Group("/v2")
 	v2.AddMiddleware(middlewareV2())
@@ -37,12 +37,12 @@ func main() {
 		})
 
 		// curl "http://localhost:9999/v2/login" -X POST -d "username=emo&password=emo123456"
-		v2.POST("/login", func(c *gee.Context) {
-			c.JSON(http.StatusOK, gee.H{
-				"username": c.PostForm("username"),
-				"password": c.PostForm("password"),
-			})
-		})
+		//v2.POST("/login", func(c *gee.Context) {
+		//	c.JSON(http.StatusOK, gee.H{
+		//		"username": c.PostForm("username"),
+		//		"password": c.PostForm("password"),
+		//	})
+		//})
 	}
 
 	err := e.Run(":9999")
