@@ -17,6 +17,7 @@ type Context struct {
 	Params     map[string]string
 	handlers   []HandlerFunc
 	index      int
+	engine     *Engine
 }
 
 func newContext(w http.ResponseWriter, req *http.Request) *Context {
