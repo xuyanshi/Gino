@@ -96,4 +96,6 @@ func (group *RouterGroup) createStaticHandler(relativePath string, fs http.FileS
 	}
 }
 
-func
+func (group *RouterGroup) Static() {
+	
+}
