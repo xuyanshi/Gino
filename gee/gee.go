@@ -22,7 +22,10 @@ type (
 )
 
 func New() *Engine {
-	return &Engine{router: newRouter()}
+	engine := &Engine{router: newRouter()}
+	engine.routerGroup = &RouterGroup{engine: engine}
+	engine.groups = []*RouterGroup{engine.routerGroup}
+	return engine
 }
 
 func (engine *Engine) addRoute(method string, pattern string, handler HandlerFunc) {
