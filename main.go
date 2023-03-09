@@ -18,7 +18,7 @@ func main() {
 	v1 := e.Group("/v1")
 	{
 		v1.GET("/", func(c *gee.Context) {
-			c.HTML(http.StatusOK, "<h1>Hello Gee</h1>")
+			c.HTML(http.StatusOK, "<h1>Hello</h1>")
 		})
 
 		v1.GET("/hello", func(c *gee.Context) {
