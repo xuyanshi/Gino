@@ -34,8 +34,8 @@ func main() {
 		// curl "http://localhost:9999/v2/login" -X POST -d "username=emo&password=emo123456"
 		v2.POST("/login", func(c *gee.Context) {
 			c.JSON(http.StatusOK, gee.H{
-				"username": c.PostForm("emo"),
-				"password": c.PostForm("emo123456"),
+				"username": c.PostForm("username"),
+				"password": c.PostForm("password"),
 			})
 		})
 	}
