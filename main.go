@@ -36,6 +36,7 @@ func main() {
 		Name: "maitian",
 		age:  24,
 	}
+	
 	e.GET("/", func(c *gee.Context) {
 		c.HTML(http.StatusOK, "css.tmpl", nil)
 	})
@@ -51,6 +52,7 @@ func main() {
 			"now":   time.Date(2022, time.March, 9, 22, 0, 0, 0, time.FixedZone("UTC+8", 8*60*60)),
 		})
 	})
+
 	e.Run(":9999")
 }
 
