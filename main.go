@@ -4,8 +4,6 @@ import (
 	"gee"
 	"log"
 	"net/http"
-	"os"
-	"os/exec"
 	"time"
 )
 
@@ -55,8 +53,9 @@ func main() {
 	if err != nil {
 		return
 	}
-	cmd := exec.Command("curl http://localhost:9999/v2/hello/emo\n")
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	cmd.Run()
+	// Useless
+	// cmd := exec.Command("curl http://localhost:9999/v2/hello/emo\n")
+	// cmd.Stdout = os.Stdout
+	// cmd.Stderr = os.Stderr
+	// cmd.Run()
 }
