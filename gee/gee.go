@@ -3,6 +3,7 @@ package gee
 import (
 	"log"
 	"net/http"
+	"path"
 	"strings"
 )
 
@@ -80,4 +81,17 @@ func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 func (group *RouterGroup) AddMiddleware(middlewares ...HandlerFunc) {
 	group.middleWares = append(group.middleWares, middlewares...)
+}
+
+func (group *RouterGroup) createStaticHandler(relativePath string, fs http.FileSystem) HandlerFunc {
+	absolutePath := path.Join(group.prefix, relativePath)
+	fileServer := http.StripPrefix(absolutePath, http.FileServer(fs))
+	return func(c *Context) {
+		file := c.Param("filepath")
+		if _, err := fs.Open(file); err != nil {
+			c.Status(http.StatusNotFound)
+			return
+		}
+		fileServer.ServeHTTP(c.Writer, c.Req)
+	}
 }
