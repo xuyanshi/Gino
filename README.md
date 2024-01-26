@@ -1,5 +1,5 @@
-# Go-Web-Framework
-A HTTP web framework written in Go (Golang). 
+# Gino
+An HTTP web framework written in Go (Golang). 
 
 ## References
 - [Gin Official Homepage](https://gin-gonic.com/)
